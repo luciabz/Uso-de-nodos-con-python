@@ -20,13 +20,13 @@ class Lista:
         nombre= input("Ingrese el nombre de la persona: ")
         Apellido = input("Ingrese el apellido de la persona: ")
         nuevoNodo = Nodo(dni, nombre, Apellido)
-        if self.cabecera:
-            ultimoNodo = self.cabecera
-            while ultimoNodo.siguiente != None:
-                ultimoNodo = ultimoNodo.siguiente
-            ultimoNodo.siguiente = nuevoNodo
-        else: 
-            self.cabecera = nuevoNodo
+        if self.cabecera: #comprueba si hay nodos en la cola
+            ultimoNodo = self.cabecera  # si hay nodos, se crea una variable que va a ser el ultimo nodo
+            while ultimoNodo.siguiente != None: # mientras el siguiente nodo no sea nulo, se va a ir al siguiente nodo
+                ultimoNodo = ultimoNodo.siguiente # en cada iteracion del bucle, la variable ultimoNodo se actualizara con el siguiente nodo en la cola
+            ultimoNodo.siguiente = nuevoNodo # una vez q encuentra el ultimo nodo de la cola, se le asigna el nuevo nodo
+        else: # si no hay nodos en la cola, se crea el primer nodo
+            self.cabecera = nuevoNodo # se asigna el nuevo nodo a la cabecera
         self.imprimirLista()
 
     def insertarNodoCabecera(self):
@@ -42,12 +42,13 @@ class Lista:
         self.cabecera = nuevoNodo
         self.imprimirLista()
 
-    def imprimirLista(self):
-        actual = self.cabecera
-        while actual != None:
-            print(f"DNI:{actual.dni}, Nombre:{actual.nombre}, Apellido:{actual.apellido}",end=" -> ")
-            actual = actual.siguiente
-        print("Null")
+    def imprimirLista(self): # se crea un metodo para imprimir la lista
+        print("Lista de personas: ")
+        actual = self.cabecera # se crea una variable que va a ser el nodo actual
+        while actual != None: # mientras el nodo actual no sea nulo, se va a imprimir el nodo actual
+            print(f"DNI:{actual.dni}, Nombre:{actual.nombre}, Apellido:{actual.apellido}",end=" -> ") # se imprime el nodo actual
+            actual = actual.siguiente # se actualiza el nodo actual con el siguiente nodo
+        print("Null") # se imprime Null al final de la lista
 
 
         
@@ -72,13 +73,13 @@ class Lista:
             actual = actual.siguiente
         return actual
     
-    def contarNodos(self):
-        contador = 0
-        actual = self.cabecera
-        while actual:
-            contador += 1
-            actual = actual.siguiente
-        return contador
+    def contarNodos(self): # se crea un contador para contar la cantidad de nodos
+        contador = 0 # se inicializa el contador en 0
+        actual = self.cabecera # se crea una variable que apunte al primer nodo
+        while actual: # mientras la variable actual sea diferente de None
+            contador += 1 # se incrementa el contador
+            actual = actual.siguiente # se avanza al siguiente nodo
+        return contador # se retorna el contador
         
 
 
@@ -86,8 +87,6 @@ class Lista:
 
 if __name__ == "__main__":
     lista = Lista()
-
-    print("---Bienvenido al Sistema de Alumno---")
 
     while True: 
         print("Menu:")
